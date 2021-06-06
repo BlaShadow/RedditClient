@@ -31,6 +31,8 @@ struct TopReditItemServiceResponse: Codable {
 
 struct TopReditItemContentServiceResponse: Codable {
   let title: String
+  let url: String
+  let thumbnail: String
   let ups: Int
   let author: String
   let numComments: Int
