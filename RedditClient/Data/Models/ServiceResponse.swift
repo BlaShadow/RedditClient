@@ -7,6 +7,8 @@
 
 import UIKit
 
+typealias RedditPost = TopReditItemContentServiceResponse
+
 struct TopRedditServiceResponse: Codable {
   let data: TopDataRedditServiceResponse
 }
