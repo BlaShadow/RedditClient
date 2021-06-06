@@ -8,6 +8,8 @@
 import UIKit
 
 class FeedViewModel: NSObject {
+  var didSelectPost: ((_: RedditPost) -> Void)?
+
   var newDataArrive: ((_: [TopReditItemContentServiceResponse]) -> Void)?
   
   private var redditPosts: [TopReditItemContentServiceResponse] = [] {
@@ -56,5 +58,12 @@ extension FeedViewModel: UITableViewDelegate, UITableViewDataSource {
     cell.viewModel = RedditPostViewModel(post: post)
 
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let post = self.redditPosts[indexPath.row]
+
+    // Post details event
+    didSelectPost?(post)
   }
 }

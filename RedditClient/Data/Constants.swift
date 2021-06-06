@@ -14,4 +14,5 @@ struct ServiceDataAccessConstants {
 
 struct Constants {
   static let redditPostCellIdentifier = "RedditPost"
+  static let postDetailsSegue = "POST_DETAILS"
 }
