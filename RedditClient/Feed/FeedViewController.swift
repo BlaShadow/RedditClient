@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FeedViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
 
   private var redditPosts: [TopReditItemContentServiceResponse] = []
