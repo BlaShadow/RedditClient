@@ -114,7 +114,15 @@ extension FeedViewModel: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let post = self.redditPosts[indexPath.row]
+    var post = self.redditPosts[indexPath.row]
+
+    // Mark post as readed
+    post.markAsReaded()
+    
+    // Updated with the updated post
+    self.redditPosts[indexPath.row] = post
+
+    tableView.reloadRows(at: [indexPath], with: .none)
 
     // Post details event
     didSelectPost?(post)

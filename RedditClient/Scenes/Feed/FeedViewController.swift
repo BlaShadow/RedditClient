@@ -44,11 +44,11 @@ class FeedViewController: UIViewController {
     self.viewModel?.clearAllPost()
   }
   
-  private func onNewDataArrive(_ _: [TopReditItemContentServiceResponse]) {
+  private func onNewDataArrive(_ items: [TopReditItemContentServiceResponse]) {
     self.refreshControl.endRefreshing()
 
     // Disable clear all button
-    self.clearAllButton.isEnabled = true
+    self.clearAllButton.isEnabled = items.count > 0
 
     // Reload data
     self.tableView.reloadData()
@@ -76,7 +76,6 @@ class FeedViewController: UIViewController {
     self.refreshControl.addTarget(self, action: #selector(self.refreshContent), for: .valueChanged)
     self.tableView.addSubview(refreshControl)
     
-    
     // - Table View
     self.tableView.register(UINib(nibName: "RedditPostTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.redditPostCellIdentifier)
     self.tableView.tableFooterView = UIView()
@@ -90,6 +89,7 @@ class FeedViewController: UIViewController {
     if segue.identifier == Constants.postDetailsSegue,
        let controller = segue.destination as? PostDetailsViewController,
        let post = sender as? RedditPost {
+
       controller.viewModel = PostDetailsViewModel(post: post)
     }
   }

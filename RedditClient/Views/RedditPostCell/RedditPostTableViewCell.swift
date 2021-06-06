@@ -15,6 +15,7 @@ class RedditPostTableViewCell: UITableViewCell {
   @IBOutlet weak var postImage: UIImageView!
   @IBOutlet weak var commentsLabel: UILabel!
   @IBOutlet weak var deletePostImageView: UIImageView!
+  @IBOutlet weak var readIndicator: UIView!
   
   var viewModel: RedditPostViewModel? {
     didSet {
@@ -25,6 +26,10 @@ class RedditPostTableViewCell: UITableViewCell {
 
       // Load remove image
       FetchImagesHelper.fetchImage(url: self.viewModel?.thumbnail ?? "", into: self.postImage)
+
+      self.readIndicator.isHidden = self.viewModel?.haveBeenReaded ?? false
+      self.readIndicator.layer.cornerRadius = 8/2
+      self.readIndicator.clipsToBounds = true
       
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removePost))
       self.deletePostImageView.addGestureRecognizer(tapGesture)

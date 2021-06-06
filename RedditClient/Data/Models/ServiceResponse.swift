@@ -38,4 +38,9 @@ struct TopReditItemContentServiceResponse: Codable {
   let author: String
   let numComments: Int
   let subreddit: String
+  var haveBeenReaded: Bool?
+
+  mutating func markAsReaded() {
+    self.haveBeenReaded = true
+  }
 }

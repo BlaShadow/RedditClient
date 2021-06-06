@@ -35,4 +35,8 @@ extension DisplayableRedditPostProtocol {
   var comments: String {
     return "\(self.post.numComments) comments"
   }
+  
+  var haveBeenReaded: Bool {
+    return self.post.haveBeenReaded ?? false
+  }
 }

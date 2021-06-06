@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-eF-hz2" userLabel="Comments">
-                                <rect key="frame" x="8" y="195" width="345" height="17"/>
+                                <rect key="frame" x="8" y="195" width="321" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -61,6 +61,14 @@
                                     <constraint firstAttribute="width" constant="25" id="eZe-gM-YOu"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="To5-s8-ahx">
+                                <rect key="frame" x="349" y="208" width="8" height="8"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="8" id="RIO-q0-HvS"/>
+                                    <constraint firstAttribute="height" constant="8" id="lvc-IU-fLT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -73,7 +81,8 @@
                             <constraint firstItem="ils-l8-bHs" firstAttribute="leading" secondItem="mV9-VA-9xx" secondAttribute="leading" constant="8" id="Rta-0W-1Sp"/>
                             <constraint firstAttribute="trailing" secondItem="ils-l8-bHs" secondAttribute="trailing" constant="64" id="TiL-aX-RAe"/>
                             <constraint firstItem="8Sx-eF-hz2" firstAttribute="top" secondItem="TEG-h5-caD" secondAttribute="bottom" constant="2" id="VFH-6F-rS6"/>
-                            <constraint firstAttribute="trailing" secondItem="8Sx-eF-hz2" secondAttribute="trailing" constant="8" id="XQ6-LA-emF"/>
+                            <constraint firstAttribute="trailing" secondItem="8Sx-eF-hz2" secondAttribute="trailing" constant="32" id="XQ6-LA-emF"/>
+                            <constraint firstAttribute="bottom" secondItem="To5-s8-ahx" secondAttribute="bottom" constant="4" id="cr2-Va-PHf"/>
                             <constraint firstItem="TEG-h5-caD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XVQ-es-2UE" secondAttribute="bottom" constant="8" id="d0O-Ag-wx2"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="gIr-5H-ooY"/>
                             <constraint firstItem="8Sx-eF-hz2" firstAttribute="leading" secondItem="mV9-VA-9xx" secondAttribute="leading" constant="8" id="iyi-Ek-2Qg"/>
@@ -82,6 +91,7 @@
                             <constraint firstAttribute="trailing" secondItem="iJM-jb-uM5" secondAttribute="trailing" constant="8" id="mnG-U6-eHR"/>
                             <constraint firstItem="HJ1-Tx-PI2" firstAttribute="top" secondItem="XVQ-es-2UE" secondAttribute="bottom" constant="8" id="oMd-dK-cbv"/>
                             <constraint firstAttribute="bottom" secondItem="8Sx-eF-hz2" secondAttribute="bottom" constant="8" id="uTk-wp-zjq"/>
+                            <constraint firstAttribute="trailing" secondItem="To5-s8-ahx" secondAttribute="trailing" constant="4" id="xRM-Hk-THR"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -99,6 +109,7 @@
                 <outlet property="content" destination="HJ1-Tx-PI2" id="178-8N-o6b"/>
                 <outlet property="deletePostImageView" destination="iJM-jb-uM5" id="8dC-dZ-xPt"/>
                 <outlet property="postImage" destination="TEG-h5-caD" id="OiU-3M-Rz3"/>
+                <outlet property="readIndicator" destination="To5-s8-ahx" id="O4h-gE-hLs"/>
                 <outlet property="subRedditLabel" destination="ils-l8-bHs" id="tLd-jF-kEq"/>
             </connections>
             <point key="canvasLocation" x="167.39130434782609" y="142.63392857142856"/>
@@ -109,6 +120,9 @@
         <image name="loading" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
