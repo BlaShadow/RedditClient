@@ -129,8 +129,7 @@
 		BF96DCC6266CD76900C72775 /* RedditClient */ = {
 			isa = PBXGroup;
 			children = (
-				BF96DD48266D000000C72775 /* PostDetails */,
-				BF96DD2E266CE56C00C72775 /* Feed */,
+				BF96DD63266D090900C72775 /* Scenes */,
 				BF96DD23266CE1E500C72775 /* Views */,
 				BF96DCFA266CD8D200C72775 /* Data */,
 				BF96DCC7266CD76900C72775 /* AppDelegate.swift */,
@@ -227,6 +226,15 @@
 				BF96DD59266D03A400C72775 /* PostDetailsViewModel.swift */,
 			);
 			path = PostDetails;
+			sourceTree = "<group>";
+		};
+		BF96DD63266D090900C72775 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BF96DD48266D000000C72775 /* PostDetails */,
+				BF96DD2E266CE56C00C72775 /* Feed */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
