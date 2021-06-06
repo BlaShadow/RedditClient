@@ -14,9 +14,9 @@ class FacadeDataAccess {
     return instance
   }
   
-  func fetchRedditPosts(completion: @escaping (_: Result<[TopReditItemContentServiceResponse], ServiceErrorResponse>) -> Void) {
-    _ = RedditServiceClient.shared
-      .fetchTopRedditPost(postPerPage: ServiceDataAccessConstants.postPerPage) { (result) in
+  func fetchRedditPosts(after: String, completion: @escaping (_: Result<[TopReditItemContentServiceResponse], ServiceErrorResponse>) -> Void) -> URLSessionDataTask? {
+    return RedditServiceClient.shared
+      .fetchTopRedditPost(after: after, postPerPage: ServiceDataAccessConstants.postPerPage) { (result) in
         DispatchQueue.main.async {
           switch result {
           case .success(let response):

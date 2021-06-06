@@ -17,9 +17,15 @@ class FeedViewModel: NSObject {
       newDataArrive?(self.redditPosts)
     }
   }
-  
+
   var onErrorReceive: ((_: ServiceErrorResponse) -> Void)?
-  
+  var currentTask: URLSessionDataTask?
+  var isLoadingData: Bool = false
+
+  var lastPostIdentifier: String {
+    return self.redditPosts.last?.id ?? ""
+  }
+
   var error: ServiceErrorResponse? {
     didSet {
       if let error = self.error {
@@ -34,8 +40,12 @@ class FeedViewModel: NSObject {
     self.fetchData()
   }
   
-  func fetchData() {
-    FacadeDataAccess.shared.fetchRedditPosts(completion: { [weak self] result in
+  func fetchData(after: String = "") {
+    self.isLoadingData = true
+    
+    self.currentTask = FacadeDataAccess.shared.fetchRedditPosts(after: after, completion: { [weak self] result in
+      self?.isLoadingData = false
+
       guard let self = self else {
         return
       }
@@ -47,6 +57,12 @@ class FeedViewModel: NSObject {
         self.error = error
       }
     })
+  }
+  
+  deinit {
+    if let task = self.currentTask, task.state == .running {
+      task.cancel()
+    }
   }
 }
 
@@ -71,5 +87,13 @@ extension FeedViewModel: UITableViewDelegate, UITableViewDataSource {
 
     // Post details event
     didSelectPost?(post)
+  }
+
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    let shouldLoadMore = self.redditPosts.count - indexPath.row == 4
+
+    if shouldLoadMore && isLoadingData == false {
+      self.fetchData(after: self.lastPostIdentifier)
+    }
   }
 }

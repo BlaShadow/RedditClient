@@ -17,9 +17,10 @@ class RedditServiceClient {
   private init() {}
 
   func fetchTopRedditPost(
+    after: String,
     postPerPage: Int,
     completion: @escaping (_: Result<TopRedditServiceResponse, ServiceErrorResponse>) -> Void) -> URLSessionDataTask? {
-    let strUrl = "\(ServiceDataAccessConstants.url)?limit=\(postPerPage)&after=t3_nt5wm0"
+    let strUrl = "\(ServiceDataAccessConstants.url)?limit=\(postPerPage)&after=t3_\(after)"
 
     guard let url = URL(string: strUrl) else {
       completion(.failure(.invalidUrl(url: strUrl)))
