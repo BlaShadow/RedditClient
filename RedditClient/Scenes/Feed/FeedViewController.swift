@@ -87,9 +87,9 @@ class FeedViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == Constants.postDetailsSegue,
-       let controller = segue.destination as? PostDetailsViewController,
+       let navController = segue.destination as? UINavigationController,
+       let controller = navController.topViewController as? PostDetailsViewController,
        let post = sender as? RedditPost {
-
       controller.viewModel = PostDetailsViewModel(post: post)
     }
   }

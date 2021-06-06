@@ -29,6 +29,10 @@ class PostDetailsViewController: UIViewController {
   }
   
   private func setupView() {
+    guard self.viewModel != nil else {
+      return
+    }
+    
     self.contentView.userLabel.text = self.viewModel?.author
     self.contentView.subRedditLabel.text = self.viewModel?.subReddit
     self.contentView.contentLabel.text = self.viewModel?.title
