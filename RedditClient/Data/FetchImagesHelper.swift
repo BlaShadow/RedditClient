@@ -19,7 +19,11 @@ class FetchImagesHelperCache {
   private var storage: [String: Data] = [:]
   
   func dataForKey(key: String) -> Data? {
-    return self.storage[key]
+    if let memoryImage = self.storage[key] {
+      return memoryImage
+    }
+
+    return nil
   }
   
   func saveData(key: String, data: Data) {
@@ -30,42 +34,54 @@ class FetchImagesHelperCache {
 struct FetchImagesHelper {
   fileprivate static let rotationAnimationName = "rotationAnimationName"
 
-  static func fetchImage(url strUrl: String, into imageView: UIImageView) {
-    
+  static func fetchImageData(url strUrl: String, completion: @escaping (_: Data?) -> Void) {
     // Check for cache image
     if let dataImage = FetchImagesHelperCache.shared.dataForKey(key: strUrl) {
-      imageView.image = UIImage(data: dataImage)
+      completion(dataImage)
+
       return
     }
     
     guard let url = URL(string: strUrl) else {
-      imageView.image = UIImage(named: "error")
+      completion(nil)
 
       return
     }
 
-    // circular animation for the image view
-    imageView.setLoadingAnimation()
-    
     DispatchQueue.global().async {
       guard let data = try? Data(contentsOf: url) else {
         DispatchQueue.main.async {
-          imageView.removeLoadingAnimation()
-          
-          imageView.image = UIImage(named: "error")
+          completion(nil)
         }
 
         return
       }
 
       DispatchQueue.main.async {
-        imageView.removeLoadingAnimation()
-
-        // Save image in memory for fast scrolling
-        FetchImagesHelperCache.shared.saveData(key: strUrl, data: data)
-
-        imageView.image = UIImage(data: data)
+        completion(data)
       }
+    }
+  }
+  
+  static func fetchImage(url strUrl: String, into imageView: UIImageView) {
+    // circular animation for the image view
+    imageView.setLoadingAnimation()
+    
+    
+    fetchImageData(url: strUrl) { (dataImage) in
+      imageView.removeLoadingAnimation()
+
+      guard let dataImage = dataImage else {
+        imageView.image = UIImage(named: "error")
+
+        return
+      }
+
+      // Save image in memory for fast scrolling
+      FetchImagesHelperCache.shared.saveData(key: strUrl, data: dataImage)
+      
+      // Set image
+      imageView.image = UIImage(data: dataImage)
     }
   }
 }
