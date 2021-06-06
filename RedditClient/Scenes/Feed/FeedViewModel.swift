@@ -18,6 +18,9 @@ class FeedViewModel: NSObject {
       if oldValue.count < redditPosts.count || self.redditPosts.count == 0 {
         newDataArrive?(self.redditPosts)
       }
+
+      // Save loaded posts
+      FacadeDataAccess.shared.storageAllData(posts: self.redditPosts)
     }
   }
 
@@ -49,6 +52,15 @@ class FeedViewModel: NSObject {
     self.redditPosts = []
 
     self.fetchData()
+  }
+  
+  func initialFetchData() {
+    let items = FacadeDataAccess.shared.fetchSavedPosts()
+    if items.count > 0 {
+      self.redditPosts.append(contentsOf: items)
+    } else {
+      self.fetchData()
+    }
   }
   
   func fetchData(after: String = "") {

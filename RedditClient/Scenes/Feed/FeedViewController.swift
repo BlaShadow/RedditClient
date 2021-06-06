@@ -25,7 +25,7 @@ class FeedViewController: UIViewController {
 
     self.setupViews()
 
-    self.viewModel?.fetchData()
+    self.viewModel?.initialFetchData()
   }
 
   @IBAction func clearAllPostAction(_ sender: Any) {

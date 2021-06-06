@@ -14,7 +14,16 @@ class FacadeDataAccess {
     return instance
   }
   
+  func storageAllData(posts: [RedditPost]) {
+    LocalDataAccess.shared.storageAllData(posts: posts)
+  }
+  
+  func fetchSavedPosts() -> [RedditPost] {
+    return LocalDataAccess.shared.fetchSavedPosts()
+  }
+
   func fetchRedditPosts(after: String, completion: @escaping (_: Result<[TopReditItemContentServiceResponse], ServiceErrorResponse>) -> Void) -> URLSessionDataTask? {
+
     return RedditServiceClient.shared
       .fetchTopRedditPost(after: after, postPerPage: ServiceDataAccessConstants.postPerPage) { (result) in
         DispatchQueue.main.async {

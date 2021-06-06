@@ -31,6 +31,7 @@
 		BF96DD5A266D03A400C72775 /* PostDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96DD59266D03A400C72775 /* PostDetailsViewModel.swift */; };
 		BF96DD5F266D06C400C72775 /* DisplayableRedditPostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96DD5E266D06C400C72775 /* DisplayableRedditPostProtocol.swift */; };
 		BFAC5FF4266D2C6900EA1305 /* MasterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC5FF3266D2C6900EA1305 /* MasterDetailsViewController.swift */; };
+		BFAC6004266D351100EA1305 /* LocalDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC6003266D351100EA1305 /* LocalDataAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		BF96DD59266D03A400C72775 /* PostDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewModel.swift; sourceTree = "<group>"; };
 		BF96DD5E266D06C400C72775 /* DisplayableRedditPostProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableRedditPostProtocol.swift; sourceTree = "<group>"; };
 		BFAC5FF3266D2C6900EA1305 /* MasterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailsViewController.swift; sourceTree = "<group>"; };
+		BFAC6003266D351100EA1305 /* LocalDataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				BF96DD12266CDC5F00C72775 /* FacadeDataAccess.swift */,
 				BF96DD17266CDFA700C72775 /* Constants.swift */,
 				BF96DD40266CF68600C72775 /* FetchImagesHelper.swift */,
+				BFAC6003266D351100EA1305 /* LocalDataAccess.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				BF96DD39266CEA2A00C72775 /* RedditPostViewModel.swift in Sources */,
 				BF96DCCA266CD76900C72775 /* SceneDelegate.swift in Sources */,
 				BF96DD41266CF68600C72775 /* FetchImagesHelper.swift in Sources */,
+				BFAC6004266D351100EA1305 /* LocalDataAccess.swift in Sources */,
 				BF96DD4D266D016500C72775 /* PostDetailsViewController.swift in Sources */,
 				BF96DD52266D01E000C72775 /* PostDetailsContentView.swift in Sources */,
 				BF96DD13266CDC5F00C72775 /* FacadeDataAccess.swift in Sources */,
