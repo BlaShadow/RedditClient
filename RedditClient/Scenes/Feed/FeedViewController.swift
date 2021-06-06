@@ -9,6 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
+  let refreshControl = UIRefreshControl()
 
   private var viewModel: FeedViewModel?
 
@@ -26,6 +27,8 @@ class FeedViewController: UIViewController {
   }
   
   private func onNewDataArrive(_ _: [TopReditItemContentServiceResponse]) {
+    self.refreshControl.endRefreshing()
+
     self.tableView.reloadData()
   }
 
@@ -37,7 +40,15 @@ class FeedViewController: UIViewController {
     self.performSegue(withIdentifier: Constants.postDetailsSegue, sender: post)
   }
   
+  @objc private func refreshContent() {
+    self.viewModel?.refreshContent()
+  }
+  
   private func setupViews() {
+    self.refreshControl.attributedTitle = NSAttributedString(string: "Refresh content")
+    self.refreshControl.addTarget(self, action: #selector(self.refreshContent), for: .valueChanged)
+    self.tableView.addSubview(refreshControl)
+    
     self.tableView.register(UINib(nibName: "RedditPostTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.redditPostCellIdentifier)
     self.tableView.tableFooterView = UIView()
     self.tableView.delegate = self.viewModel

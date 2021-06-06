@@ -28,6 +28,12 @@ class FeedViewModel: NSObject {
     }
   }
   
+  func refreshContent() {
+    self.redditPosts = []
+
+    self.fetchData()
+  }
+  
   func fetchData() {
     FacadeDataAccess.shared.fetchRedditPosts(completion: { [weak self] result in
       guard let self = self else {
