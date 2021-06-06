@@ -22,8 +22,8 @@ class FeedViewModel: NSObject {
   }
 
   var onErrorReceive: ((_: ServiceErrorResponse) -> Void)?
-  var currentTask: URLSessionDataTask?
-  var isLoadingData: Bool = false
+  private var currentTask: URLSessionDataTask?
+  private var isLoadingData: Bool = false
 
   var lastPostIdentifier: String {
     return self.redditPosts.last?.id ?? ""
@@ -37,6 +37,14 @@ class FeedViewModel: NSObject {
     }
   }
   
+  func clearAllPost() {
+    self.redditPosts = []
+  }
+  
+  func removePosts(visiblesRows: [Int]) {
+    self.redditPosts.removeSubrange(0 ... (visiblesRows.max() ?? 0))
+  }
+
   func refreshContent() {
     self.redditPosts = []
 

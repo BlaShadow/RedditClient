@@ -9,6 +9,8 @@ import UIKit
 
 class FeedViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var clearAllButton: UIBarButtonItem!
+  
   let refreshControl = UIRefreshControl()
 
   private var viewModel: FeedViewModel?
@@ -25,10 +27,30 @@ class FeedViewController: UIViewController {
 
     self.viewModel?.fetchData()
   }
+
+  @IBAction func clearAllPostAction(_ sender: Any) {
+    self.clearAllButton.isEnabled = false
+
+    self.tableView.beginUpdates()
+    let values = self.tableView.indexPathsForVisibleRows ?? []
+    self.viewModel?.removePosts(visiblesRows: values.map({ $0.row }))
+    self.tableView.deleteRows(at: values, with: .top)
+    self.tableView.endUpdates()
+    
+    // Disable clear button
+    self.clearAllButton.isEnabled = false
+    
+    // Clear all post
+    self.viewModel?.clearAllPost()
+  }
   
   private func onNewDataArrive(_ _: [TopReditItemContentServiceResponse]) {
     self.refreshControl.endRefreshing()
 
+    // Disable clear all button
+    self.clearAllButton.isEnabled = true
+
+    // Reload data
     self.tableView.reloadData()
   }
 
@@ -44,11 +66,18 @@ class FeedViewController: UIViewController {
     self.viewModel?.refreshContent()
   }
   
+  // Mark: Setup view method
   private func setupViews() {
+    // - Disable clear all button
+    self.clearAllButton.isEnabled = false
+
+    // Refresh control
     self.refreshControl.attributedTitle = NSAttributedString(string: "Refresh content")
     self.refreshControl.addTarget(self, action: #selector(self.refreshContent), for: .valueChanged)
     self.tableView.addSubview(refreshControl)
     
+    
+    // - Table View
     self.tableView.register(UINib(nibName: "RedditPostTableViewCell", bundle: nil), forCellReuseIdentifier: Constants.redditPostCellIdentifier)
     self.tableView.tableFooterView = UIView()
     self.tableView.delegate = self.viewModel

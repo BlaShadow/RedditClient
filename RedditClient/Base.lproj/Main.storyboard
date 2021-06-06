@@ -30,8 +30,15 @@
                             <constraint firstItem="mkU-eZ-5hY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mSK-5z-p7c"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Reddit Posts" id="TZB-Pc-5y9"/>
+                    <navigationItem key="navigationItem" title="Reddit Posts" id="TZB-Pc-5y9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="VYB-8R-jEw">
+                            <connections>
+                                <action selector="clearAllPostAction:" destination="BYZ-38-t0r" id="0v5-Fj-pcj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="clearAllButton" destination="VYB-8R-jEw" id="Vxf-8o-mvn"/>
                         <outlet property="tableView" destination="mkU-eZ-5hY" id="B6V-Vx-b8o"/>
                         <segue destination="vEi-2l-pry" kind="show" identifier="POST_DETAILS" id="dvl-AZ-Nlq"/>
                     </connections>
