@@ -14,14 +14,16 @@ class FacadeDataAccess {
     return instance
   }
   
-  func fetchRedditPosts(completion: @escaping (_: Result<[TopReditItemContentServiceResponse], Error>) -> Void) {
+  func fetchRedditPosts(completion: @escaping (_: Result<[TopReditItemContentServiceResponse], ServiceErrorResponse>) -> Void) {
     _ = RedditServiceClient.shared
       .fetchTopRedditPost(postPerPage: ServiceDataAccessConstants.postPerPage) { (result) in
-        switch result {
-        case .success(let response):
-          completion(.success(response.data.children.map({ $0.data })))
-        case .failure(let error):
-          completion(.failure(error))
+        DispatchQueue.main.async {
+          switch result {
+          case .success(let response):
+            completion(.success(response.data.children.map({ $0.data })))
+          case .failure(let error):
+            completion(.failure(error))
+          }
         }
     }
   }

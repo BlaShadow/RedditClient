@@ -7,6 +7,10 @@
 
 import UIKit
 
-class RedditPostViewModel: NSObject {
-
+class RedditPostViewModel {
+  let post: RedditPost
+  
+  init(post: RedditPost) {
+    self.post = post
+  }
 }
