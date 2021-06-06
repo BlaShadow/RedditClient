@@ -36,4 +36,5 @@ struct TopReditItemContentServiceResponse: Codable {
   let ups: Int
   let author: String
   let numComments: Int
+  let subreddit: String
 }
