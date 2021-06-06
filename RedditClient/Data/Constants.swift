@@ -8,7 +8,7 @@
 import UIKit
 
 struct ServiceDataAccessConstants {
-  static let postPerPage = 5
+  static let postPerPage = 20
   static let url = "https://www.reddit.com/top.json"
 }
 

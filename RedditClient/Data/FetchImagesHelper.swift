@@ -7,11 +7,38 @@
 
 import UIKit
 
+class FetchImagesHelperCache {
+  private static let instance = FetchImagesHelperCache()
+  
+  static var shared: FetchImagesHelperCache {
+    return instance
+  }
+  
+  private init() {}
+  
+  private var storage: [String: Data] = [:]
+  
+  func dataForKey(key: String) -> Data? {
+    return self.storage[key]
+  }
+  
+  func saveData(key: String, data: Data) {
+    self.storage[key] = data
+  }
+}
+
 struct FetchImagesHelper {
   fileprivate static let rotationAnimationName = "rotationAnimationName"
 
-  static func fetchImage(url: String, into imageView: UIImageView) {
-    guard let url = URL(string: url) else {
+  static func fetchImage(url strUrl: String, into imageView: UIImageView) {
+    
+    // Check for cache image
+    if let dataImage = FetchImagesHelperCache.shared.dataForKey(key: strUrl) {
+      imageView.image = UIImage(data: dataImage)
+      return
+    }
+    
+    guard let url = URL(string: strUrl) else {
       imageView.image = UIImage(named: "error")
 
       return
@@ -22,9 +49,9 @@ struct FetchImagesHelper {
     
     DispatchQueue.global().async {
       guard let data = try? Data(contentsOf: url) else {
-        imageView.removeLoadingAnimation()
-
         DispatchQueue.main.async {
+          imageView.removeLoadingAnimation()
+          
           imageView.image = UIImage(named: "error")
         }
 
@@ -33,6 +60,9 @@ struct FetchImagesHelper {
 
       DispatchQueue.main.async {
         imageView.removeLoadingAnimation()
+
+        // Save image in memory for fast scrolling
+        FetchImagesHelperCache.shared.saveData(key: strUrl, data: data)
 
         imageView.image = UIImage(data: data)
       }
