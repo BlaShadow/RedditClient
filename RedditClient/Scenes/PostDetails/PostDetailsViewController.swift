@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class PostDetailsViewController: UIViewController {
   @IBOutlet weak var contentView: PostDetailsContentView!
@@ -15,6 +16,16 @@ class PostDetailsViewController: UIViewController {
     super.viewDidLoad()
     
     self.setupView()
+  }
+  
+  @IBAction func saveImage(_ sender: Any) {
+    self.viewModel?.savePostImage(completion: { (error) in
+      if let error = error {
+        DialogHelper.displayAlert(title: "Error", message: error.localizedDescription, controller: self)
+      } else {
+        DialogHelper.displayAlert(title: "Information", message: "Image saved successfully", controller: self)
+      }
+    })
   }
   
   private func setupView() {

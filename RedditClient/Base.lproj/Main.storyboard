@@ -124,7 +124,13 @@
                             <outlet property="userLabel" destination="Y9f-tg-Z7a" id="i5a-ZX-yut"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="OJQ-P0-ADg"/>
+                    <navigationItem key="navigationItem" id="OJQ-P0-ADg">
+                        <barButtonItem key="rightBarButtonItem" title="Save Image" id="V5b-rj-B19">
+                            <connections>
+                                <action selector="saveImage:" destination="vEi-2l-pry" id="jTY-Ua-IFd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="auw-EH-pLs" id="3ME-fK-75W"/>
                     </connections>
