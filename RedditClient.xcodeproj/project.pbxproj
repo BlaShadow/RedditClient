@@ -25,6 +25,7 @@
 		BF96DD2A266CE47400C72775 /* DialogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96DD29266CE47400C72775 /* DialogHelper.swift */; };
 		BF96DD30266CE58A00C72775 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96DD2F266CE58A00C72775 /* FeedViewModel.swift */; };
 		BF96DD39266CEA2A00C72775 /* RedditPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96DD38266CEA2A00C72775 /* RedditPostViewModel.swift */; };
+		BF96DD41266CF68600C72775 /* FetchImagesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96DD40266CF68600C72775 /* FetchImagesHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		BF96DD29266CE47400C72775 /* DialogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogHelper.swift; sourceTree = "<group>"; };
 		BF96DD2F266CE58A00C72775 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		BF96DD38266CEA2A00C72775 /* RedditPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostViewModel.swift; sourceTree = "<group>"; };
+		BF96DD40266CF68600C72775 /* FetchImagesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImagesHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				BF96DCFB266CD8D700C72775 /* ServiceClient */,
 				BF96DD12266CDC5F00C72775 /* FacadeDataAccess.swift */,
 				BF96DD17266CDFA700C72775 /* Constants.swift */,
+				BF96DD40266CF68600C72775 /* FetchImagesHelper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				BF96DD30266CE58A00C72775 /* FeedViewModel.swift in Sources */,
 				BF96DD39266CEA2A00C72775 /* RedditPostViewModel.swift in Sources */,
 				BF96DCCA266CD76900C72775 /* SceneDelegate.swift in Sources */,
+				BF96DD41266CF68600C72775 /* FetchImagesHelper.swift in Sources */,
 				BF96DD13266CDC5F00C72775 /* FacadeDataAccess.swift in Sources */,
 				BF96DD2A266CE47400C72775 /* DialogHelper.swift in Sources */,
 				BF96DD1E266CE1AC00C72775 /* RedditPostTableViewCell.swift in Sources */,

@@ -9,9 +9,19 @@ import UIKit
 
 class RedditPostTableViewCell: UITableViewCell {
 
+  @IBOutlet weak var subRedditLabel: UILabel!
+  @IBOutlet weak var authorLabel: UILabel!
+  @IBOutlet weak var content: UILabel!
+  @IBOutlet weak var postImage: UIImageView!
+  
   var viewModel: RedditPostViewModel? {
     didSet {
-      print("make some changes")
+      self.authorLabel.text = self.viewModel?.author
+      self.subRedditLabel.text = self.viewModel?.subReddit
+      self.content.text = self.viewModel?.title
+
+      // Load remove image
+      FetchImagesHelper.fetchImage(url: self.viewModel?.thumbnail ?? "", into: self.postImage)
     }
   }
   
