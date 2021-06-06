@@ -13,3 +13,14 @@ enum ServiceErrorResponse: Error {
   case errorParsingJson
   case strError(value: String)
 }
+
+extension ServiceErrorResponse: LocalizedError {
+  public var errorDescription: String? {
+    switch self {
+    case .strError(let value):
+      return value
+    default:
+      return "No description"
+    }
+  }
+}
