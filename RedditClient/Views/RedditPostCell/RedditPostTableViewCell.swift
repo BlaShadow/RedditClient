@@ -9,6 +9,12 @@ import UIKit
 
 class RedditPostTableViewCell: UITableViewCell {
 
+  var viewModel: RedditPostViewModel? {
+    didSet {
+      print("make some changes")
+    }
+  }
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
