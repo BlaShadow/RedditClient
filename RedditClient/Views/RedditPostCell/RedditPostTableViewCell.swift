@@ -14,6 +14,7 @@ class RedditPostTableViewCell: UITableViewCell {
   @IBOutlet weak var content: UILabel!
   @IBOutlet weak var postImage: UIImageView!
   @IBOutlet weak var commentsLabel: UILabel!
+  @IBOutlet weak var deletePostImageView: UIImageView!
   
   var viewModel: RedditPostViewModel? {
     didSet {
@@ -24,7 +25,14 @@ class RedditPostTableViewCell: UITableViewCell {
 
       // Load remove image
       FetchImagesHelper.fetchImage(url: self.viewModel?.thumbnail ?? "", into: self.postImage)
+      
+      let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removePost))
+      self.deletePostImageView.addGestureRecognizer(tapGesture)
     }
+  }
+  
+  @objc func removePost() {
+    self.viewModel?.removePost()
   }
   
   override func awakeFromNib() {

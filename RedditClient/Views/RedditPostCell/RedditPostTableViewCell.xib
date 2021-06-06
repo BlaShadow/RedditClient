@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="361" height="220"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ils-l8-bHs" userLabel="SubReddit">
-                                <rect key="frame" x="8" y="8" width="321" height="17"/>
+                                <rect key="frame" x="8" y="8" width="289" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,16 +54,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="delete" translatesAutoresizingMaskIntoConstraints="NO" id="iJM-jb-uM5">
+                                <rect key="frame" x="328" y="8" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="a7Z-rp-IU6"/>
+                                    <constraint firstAttribute="width" constant="25" id="eZe-gM-YOu"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="iJM-jb-uM5" firstAttribute="top" secondItem="mV9-VA-9xx" secondAttribute="top" constant="8" id="6YJ-3H-Bzt"/>
                             <constraint firstItem="ils-l8-bHs" firstAttribute="top" secondItem="mV9-VA-9xx" secondAttribute="top" constant="8" id="Cdu-e1-pqs"/>
                             <constraint firstItem="TEG-h5-caD" firstAttribute="leading" secondItem="HJ1-Tx-PI2" secondAttribute="trailing" constant="8" id="HtO-G8-yu3"/>
                             <constraint firstItem="XVQ-es-2UE" firstAttribute="top" secondItem="ils-l8-bHs" secondAttribute="bottom" constant="4" id="JiQ-Ua-Blz"/>
                             <constraint firstItem="XVQ-es-2UE" firstAttribute="leading" secondItem="mV9-VA-9xx" secondAttribute="leading" constant="8" id="KTs-79-gFJ"/>
                             <constraint firstItem="HJ1-Tx-PI2" firstAttribute="leading" secondItem="mV9-VA-9xx" secondAttribute="leading" constant="8" id="Kai-4b-4sq"/>
                             <constraint firstItem="ils-l8-bHs" firstAttribute="leading" secondItem="mV9-VA-9xx" secondAttribute="leading" constant="8" id="Rta-0W-1Sp"/>
-                            <constraint firstAttribute="trailing" secondItem="ils-l8-bHs" secondAttribute="trailing" constant="32" id="TiL-aX-RAe"/>
+                            <constraint firstAttribute="trailing" secondItem="ils-l8-bHs" secondAttribute="trailing" constant="64" id="TiL-aX-RAe"/>
                             <constraint firstItem="8Sx-eF-hz2" firstAttribute="top" secondItem="TEG-h5-caD" secondAttribute="bottom" constant="2" id="VFH-6F-rS6"/>
                             <constraint firstAttribute="trailing" secondItem="8Sx-eF-hz2" secondAttribute="trailing" constant="8" id="XQ6-LA-emF"/>
                             <constraint firstItem="TEG-h5-caD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XVQ-es-2UE" secondAttribute="bottom" constant="8" id="d0O-Ag-wx2"/>
@@ -71,6 +79,7 @@
                             <constraint firstItem="8Sx-eF-hz2" firstAttribute="leading" secondItem="mV9-VA-9xx" secondAttribute="leading" constant="8" id="iyi-Ek-2Qg"/>
                             <constraint firstAttribute="trailing" secondItem="XVQ-es-2UE" secondAttribute="trailing" constant="32" id="jLW-jh-d1c"/>
                             <constraint firstAttribute="trailing" secondItem="TEG-h5-caD" secondAttribute="trailing" constant="8" id="mAl-77-5hK"/>
+                            <constraint firstAttribute="trailing" secondItem="iJM-jb-uM5" secondAttribute="trailing" constant="8" id="mnG-U6-eHR"/>
                             <constraint firstItem="HJ1-Tx-PI2" firstAttribute="top" secondItem="XVQ-es-2UE" secondAttribute="bottom" constant="8" id="oMd-dK-cbv"/>
                             <constraint firstAttribute="bottom" secondItem="8Sx-eF-hz2" secondAttribute="bottom" constant="8" id="uTk-wp-zjq"/>
                         </constraints>
@@ -88,6 +97,7 @@
                 <outlet property="authorLabel" destination="XVQ-es-2UE" id="beW-jz-NWX"/>
                 <outlet property="commentsLabel" destination="8Sx-eF-hz2" id="BzG-hg-qIo"/>
                 <outlet property="content" destination="HJ1-Tx-PI2" id="178-8N-o6b"/>
+                <outlet property="deletePostImageView" destination="iJM-jb-uM5" id="8dC-dZ-xPt"/>
                 <outlet property="postImage" destination="TEG-h5-caD" id="OiU-3M-Rz3"/>
                 <outlet property="subRedditLabel" destination="ils-l8-bHs" id="tLd-jF-kEq"/>
             </connections>
@@ -95,6 +105,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="delete" width="32" height="32"/>
         <image name="loading" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

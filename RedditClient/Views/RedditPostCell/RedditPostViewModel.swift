@@ -9,9 +9,14 @@ import UIKit
 
 class RedditPostViewModel {
   var post: RedditPost
+  var onRemovePost: ((_: RedditPost) -> Void)?
   
   init(post: RedditPost) {
     self.post = post
+  }
+  
+  func removePost() {
+    self.onRemovePost?(self.post)
   }
 }
 

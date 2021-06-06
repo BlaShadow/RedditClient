@@ -14,7 +14,10 @@ class FeedViewModel: NSObject {
   
   private var redditPosts: [TopReditItemContentServiceResponse] = [] {
     didSet {
-      newDataArrive?(self.redditPosts)
+      // Avoid reload table view for post deletion
+      if oldValue.count < redditPosts.count || self.redditPosts.count == 0 {
+        newDataArrive?(self.redditPosts)
+      }
     }
   }
 
@@ -77,9 +80,29 @@ extension FeedViewModel: UITableViewDelegate, UITableViewDataSource {
     }
 
     let post = self.redditPosts[indexPath.row]
-    cell.viewModel = RedditPostViewModel(post: post)
+    let cellViewModel = RedditPostViewModel(post: post)
+    cellViewModel.onRemovePost = { [weak self] _ in
+      guard let self = self else {
+        return
+      }
+
+      // Delete post
+      self.deletePost(tableView: tableView, post: post)
+    }
+
+    cell.viewModel = cellViewModel
 
     return cell
+  }
+
+  private func deletePost(tableView: UITableView, post: RedditPost) {
+    guard  let index = self.redditPosts.firstIndex(where: { $0.id == post.id }) else {
+      return
+    }
+
+    let actualIndexPath = IndexPath(row: index, section: 0)
+    self.redditPosts.remove(at: index)
+    tableView.deleteRows(at: [actualIndexPath], with: .left)
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
